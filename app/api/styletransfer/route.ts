@@ -6,12 +6,12 @@ import { createCanvas } from 'canvas';
 import { increaseApiLimit, checkApiLimit } from '@/lib/api-limit';
 import { checkSubscription } from '@/lib/subscription';
 
-export const config = {
+/* export const config = {
 	api: {
 		bodyParser: false,
 	},
 };
-
+ */
 export async function POST(req: Request) {
 	try {
 		const { userId } = auth();
