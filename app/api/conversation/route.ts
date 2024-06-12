@@ -15,17 +15,18 @@ export async function POST(req: Request) {
 		const { userId } = auth();
 		const body = await req.json();
 		const { messages } = body;
+		console.log(body);
 
 		if (!userId) {
 			return new NextResponse('Unauthorized', { status: 401 });
 		}
 
-		/* if (!apiKey) {
+		if (!openai.apiKey) {
 			return new NextResponse('OpenAI Api key not configured', { status: 500 });
-		} */
+		}
 
 		if (!messages) {
-			return new NextResponse('Messages a re required', { status: 400 });
+			return new NextResponse('Messages are required', { status: 400 });
 		}
 
 		const freeTrial = await checkApiLimit();
@@ -37,16 +38,35 @@ export async function POST(req: Request) {
 
 		const response = await openai.chat.completions.create({
 			model: 'gpt-3.5-turbo',
-			messages,
+			messages: messages,
+			//stream: true,
 		});
+
+		/* const stream = await openai.chat.completions.create({
+			model: 'gpt-3.5-turbo',
+			messages: messages,
+			stream: true,
+		});
+		for await (const part of stream) {
+			console.log(part.choices[0].delta);
+		} */
 
 		if (!isPro) {
 			await increaseApiLimit();
 		}
 
+		//return NextResponse.json(stream);
 		return NextResponse.json(response.choices[0].message);
-	} catch (err) {
-		console.log('[CONVERSATION ERROR]', err);
-		return new NextResponse('Internal Server Error', { status: 500 });
+	} catch (error: any) {
+		if (error instanceof OpenAI.APIError) {
+			console.error(error.status); // e.g. 401
+			console.error(error.message); // e.g. The authentication token you passed was invalid...
+			console.error(error.code); // e.g. 'invalid_api_key'
+			console.error(error.type); // e.g. 'invalid_request_error'
+		} else {
+			console.log('[CONVERSATION ERROR]', error);
+		}
+
+		return new NextResponse('[CONVERSATION ERROR] Internal Server Error', { status: 500 });
 	}
 }
