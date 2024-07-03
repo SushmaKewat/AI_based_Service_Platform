@@ -42,15 +42,6 @@ export async function POST(req: Request) {
 			//stream: true,
 		});
 
-		/* const stream = await openai.chat.completions.create({
-			model: 'gpt-3.5-turbo',
-			messages: messages,
-			stream: true,
-		});
-		for await (const part of stream) {
-			console.log(part.choices[0].delta);
-		} */
-
 		if (!isPro) {
 			await increaseApiLimit();
 		}

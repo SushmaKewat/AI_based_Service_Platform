@@ -8,31 +8,32 @@ const testimonials = [
 		name: 'Sushma',
 		avatar: 'S',
 		title: 'Software Engineer',
-		description: "This is the best AI tool I've ever usedDynamicAPIs.",
+		description: "This is the best AI tool I've ever used.",
 	},
 	{
 		name: 'Sumitra Agnihotram',
 		avatar: 'S',
 		title: 'Python Developer',
-		description: "Amazing! Well built. All you need at one place.",
+		description: 'Amazing! Well built. All you need at one place.',
 	},
 	{
 		name: 'Trupti',
 		avatar: 'T',
 		title: 'Data Analyst',
-		description: "Thanks to Xynapse! Now I don't have to go to multiple sites to use AI services.",
+		description:
+			"Thanks to Xynapse! Now I don't have to go to multiple sites to use AI services.",
 	},
 	{
 		name: 'Rajnish',
 		avatar: 'R',
 		title: 'Frontend Developer',
-		description: "Creating images from text have never been this easier.",
+		description: 'Creating images from text have never been this easier.',
 	},
 	{
 		name: 'Manik Malhotra',
 		avatar: 'M',
 		title: 'Prompt Engineer',
-		description: "Prompt engneering never felt this better.",
+		description: 'Prompt engneering never felt this better.',
 	},
 ];
 

@@ -49,7 +49,7 @@ export async function GET() {
 							name: 'Xynapse Pro',
 							description: 'Unlimited AI Generations',
 						},
-						unit_amount: 1000,
+						unit_amount: 500,
 						recurring: {
 							interval: 'month',
 						},
