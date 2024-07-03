@@ -1,4 +1,4 @@
-import { create } from 'zustand';
+import { create } from 'zustand'; //manages the state in this application
 
 interface useProModalStore {
 	isOpen: boolean;
